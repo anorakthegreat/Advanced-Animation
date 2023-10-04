@@ -21,7 +21,7 @@ function Mover(config) {
 
   let id = 0;
   console.log(JSVector.getRandomNumber(1, 10))
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 1; i++) {
     this.orbiters[i] = new Orbiter(this, JSVector.getRandomNumber(0, 2*Math.PI, false), JSVector.getRandomNumber(70, 80), JSVector.getRandomNumber(1, 10)/100, 5, id)
     id++
   }
@@ -40,21 +40,27 @@ function Mover(config) {
 }
 
 //  placing methods in the prototype (every ball shares functions)
-Mover.prototype.run = function (width, height) {
+Mover.prototype.run = function (movers, width, height) {
 
-  this.checkEdges(width, height);
-  this.update();
+  
+
+  if(this.config.move){
+    this.checkEdges(width, height);
+    this.update();
+    for (let i = 0; i < this.orbiters.length; i++) {
+      // console.log(i)
+      this.orbiters[i].run(this, movers, this.orbiters, this.idArray)
+    }
+  }
+
   this.render();
+
+  
 
   // console.log(JSVector.getRandomNumber(0.1, 1)/10)
 
 
-  for (let i = 0; i < this.orbiters.length; i++) {
-    // console.log(i)
-
-    console.log(this.idArray)
-    this.orbiters[i].run(this.orbiters, this.idArray)
-  }
+  
   // this.orbiter.run()
   
 } 

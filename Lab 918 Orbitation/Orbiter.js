@@ -1,14 +1,7 @@
 //  Mover constructor function +++++++++++++++++++++++++++++
 function Orbiter(parent, angle, orbitalRadius, angleVel, rad, id) {
-    // this.mover = parent
-    // this.angularVelocity = config
-    // console.log(this.mover.x)
-
-    // console.log(parent.locationVector.x)
 
     this.id = id
-
-    // this.idArray = []
 
     this.mover = parent;
 
@@ -27,9 +20,9 @@ function Orbiter(parent, angle, orbitalRadius, angleVel, rad, id) {
   }
   
   //  placing methods in the prototype (every ball shares functions)
-  Orbiter.prototype.run = function (orbiters, idArray) {
+  Orbiter.prototype.run = function (parent, movers, orbiters, idArray) {
 
-    this.checkOverlapping(orbiters)
+    this.checkOverlapping(parent, movers, orbiters)
     this.update();
     this.render();
     
@@ -37,38 +30,22 @@ function Orbiter(parent, angle, orbitalRadius, angleVel, rad, id) {
       
   } 
 
-  Orbiter.prototype.checkOverlapping = function(orbiters, idArray){
+  Orbiter.prototype.checkOverlapping = function(parent, movers, orbiters){
+    for(let i = 0; i < movers.length; i++){
+      if(parent != this.mover[i]){
+        // console.log(parent.locationVector.angleBetween(movers[i].locationVector))
+        // this.angularVelocity = this.angle - this.loc.angleBetween(orbiters[i].loc)
+        this.angularVelocity = (parent.locationVector.angleBetween(movers[i].locationVector) - this.angle) / 100
 
-    for(let i = 0; i < orbiters.length; i++){
-      if(orbiters[i] != this){
+        if(this.angularVelocity > 0.01){
+          this.angularVelocity = 0.01
+        } else if(this.angularVelocity < -0.01){
+          this.angularVelocity = -0.01
 
-        // console.log(this.loc.x)
-        // let d = JSVector.getDistance(this.loc, orbiters[i].locationVector)
-        let d = this.loc.distance(orbiters[i].loc)
-
-        if(d < this.radius + orbiters[i].radius){
-          
-          if(!this.firstRun){
-            // console.log("OVERLAPPING")
-            // console.log(orbiters[i].id)
-            // console.log(idArray)
-
-            if(idArray.includes(orbiters[i].id) || idArray.includes(this.id)){
-             console.log("Hallo")
-            } else {
-             this.radius *= 2
-             orbiters[i].radius = 0
-             this.idArray.push(orbiters.id)
-            }
-
-          }
-          
         }
+        console.log(this.angularVelocity)
       }
     }
-
-    // console.log(orbiters)
-    
   }
   
   

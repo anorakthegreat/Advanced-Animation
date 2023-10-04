@@ -34,19 +34,23 @@ function init() {
 
 // every animation cycle
 function animate() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = "rgba(0, 0 ,0, 0.1)"
+    context.fillRect(0, 0, canvas.width, canvas.height);
     runBubbles(mousePos);   // run bubbles
     requestAnimationFrame(animate); // next cycle
 }
 
 function loadMovers(n) {
 
-    configAttract = { x: 200, y: 200, diam: 20, mass: 7, wallCollision: true, force: ["none"], type: "Mover" }
+    configAttract = { x: 200, y: 200, diam: 20, mass: 7, wallCollision: true, force: ["none"], type: "Mover", move:true }
+    configAttract1 = { x: 200, y: 200, diam: 20, mass: 7, wallCollision: true, force: ["none"], type: "Mover", move:false }
+
 
     // configRepel = {x: 200, y: 200, diam: 20, mass:7, wallCollision: false, force : ["none"], type: "repeller" }
 
     movers = []
     movers[0] = new Mover(configAttract)
+    movers[1] = new Mover(configAttract1)
 
 
     // movers[1] = new Mover(configRepel)
@@ -66,7 +70,7 @@ function runBubbles(mousePos) {
 
 
 
-        movers[i].run(canvas.width, canvas.height);
+        movers[i].run(movers,canvas.width, canvas.height);
     }
 }
 
