@@ -8,6 +8,7 @@ function Orbiter(parent, angle, orbitalRadius, angleVel, rad, id) {
     this.radius = rad;
 
     this.angularVelocity = angleVel
+    this.angularVelocity = 0.1
 
     console.log(this.mover.locationVector.x)
     this.loc = new JSVector(this.mover.locationVector.x, this.mover.locationVector.y);
@@ -35,15 +36,30 @@ function Orbiter(parent, angle, orbitalRadius, angleVel, rad, id) {
       if(parent != this.mover[i]){
         // console.log(parent.locationVector.angleBetween(movers[i].locationVector))
         // this.angularVelocity = this.angle - this.loc.angleBetween(orbiters[i].loc)
-        this.angularVelocity = (parent.locationVector.angleBetween(movers[i].locationVector) - this.angle) / 100
+        // this.angularVelocity = (this.loc.angleBetween(movers[i].locationVector) - this.angle)
 
-        if(this.angularVelocity > 0.01){
-          this.angularVelocity = 0.01
-        } else if(this.angularVelocity < -0.01){
-          this.angularVelocity = -0.01
+        // console.log((this.loc.angleBetween(movers[i].locationVector)* 180 / Math.PI - this.angle) * 0.01 )
+        this.angularVelocity = (this.loc.angleBetween(movers[i].locationVector)* 180 / Math.PI - (this.angle * 180 / Math.PI)) * 0.01
 
+        if(this.angularVelocity > 0.1){
+          this.angularVelocity = 0.11
+        } else if(this.angularVelocity < -0.11){
+          this.angularVelocity = 0.1
         }
-        console.log(this.angularVelocity)
+        console.log(this.angularVelocity )
+
+        // context.lineTo(this.loc.x, this.loc.y);
+
+
+        // console.log(this.angle * 180 / Math.PI)
+
+        // if(this.angularVelocity > 0.01){
+        //   this.angularVelocity = 0.01
+        // } else if(this.angularVelocity < -0.01){
+        //   this.angularVelocity = -0.01
+
+        // }
+        // console.log(this.angularVelocity)
       }
     }
   }
@@ -62,6 +78,7 @@ function Orbiter(parent, angle, orbitalRadius, angleVel, rad, id) {
       ctx.beginPath();
       ctx.arc(this.loc.x, this.loc.y, this.radius, Math.PI * 2, 0, false);
 
+
       ctx.stroke();
       ctx.fill() 
   }
@@ -72,6 +89,10 @@ function Orbiter(parent, angle, orbitalRadius, angleVel, rad, id) {
       this.loc.x = this.mover.locationVector.x + Math.cos(this.angle) * this.orbitalRadius;
       this.loc.y = this.mover.locationVector.y + Math.sin(this.angle) * this.orbitalRadius;
       this.angle += this.angularVelocity
+
+      if(this.angle * 180 / Math.PI > 360){
+        this.angle = 0
+      }
   }
   
   

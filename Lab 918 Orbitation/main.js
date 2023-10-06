@@ -43,7 +43,7 @@ function animate() {
 function loadMovers(n) {
 
     configAttract = { x: 200, y: 200, diam: 20, mass: 7, wallCollision: true, force: ["none"], type: "Mover", move:true }
-    configAttract1 = { x: 200, y: 200, diam: 20, mass: 7, wallCollision: true, force: ["none"], type: "Mover", move:false }
+    configAttract1 = { x: 200, y: 200, diam: 20, mass: 7, wallCollision: true, force: ["none"], type: "Mover", move:true }
 
 
     // configRepel = {x: 200, y: 200, diam: 20, mass:7, wallCollision: false, force : ["none"], type: "repeller" }

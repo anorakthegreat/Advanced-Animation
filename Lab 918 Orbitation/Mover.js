@@ -109,6 +109,8 @@ Mover.prototype.render = function () {
 
 //  update Mover every animation frame
 Mover.prototype.update = function () {
+
+    
     
     this.locationVector.add(this.velocityVector)
 }
