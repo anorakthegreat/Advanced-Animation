@@ -7,10 +7,23 @@ let canvas, context;
 let ps;
 let attract = true;
 let mousePos = { x: 0, y: 0 }
+let particleSystems = []
 
-window.addEventListener('mousemove', (event) => {
-    mousePos = { x: event.clientX, y: event.clientY };
-});
+
+window.addEventListener("click", onClick)
+
+function onClick(e){
+
+    console.log(e.offsetX)
+    console.log(e.offsetY)
+
+
+    // mousePose.x = e.offsetX
+    // mousePose.y = e.offsetY
+
+    particleSystems.push(new ParticleSystem(e.offsetX, e.offsetY))
+}
+
 
 window.addEventListener("click", click)
 
@@ -27,8 +40,9 @@ function click() {
 function init() {
     canvas = document.getElementById("cnv");
     context = canvas.getContext("2d");
-    animate();      // kick off the animation
     ps = new ParticleSystem(100, 100);
+
+    animate();      // kick off the animation
 }
 
 // every animation cycle
@@ -42,7 +56,10 @@ function animate() {
 
 // move the circle to a new location
 function runBubbles() {
-    ps.run()
+
+    for(let i = 0; i < particleSystems.length; i++){
+        particleSystems[i].run()
+    }
     
 }
 
