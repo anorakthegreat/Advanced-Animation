@@ -5,6 +5,7 @@ window.addEventListener("load", init);
 // global variables
 let canvas, context;
 let ps;
+let mover;
 let attract = true;
 let mousePos = { x: 0, y: 0 }
 let particleSystems = []
@@ -41,7 +42,7 @@ function init() {
     canvas = document.getElementById("cnv");
     context = canvas.getContext("2d");
     ps = new ParticleSystem(100, 100);
-
+    mover = new Mover();
     animate();      // kick off the animation
 }
 
@@ -58,8 +59,10 @@ function animate() {
 function runBubbles() {
 
     for(let i = 0; i < particleSystems.length; i++){
-        particleSystems[i].run()
+        particleSystems[i].run(canvas)
     }
+
+    // mover.run()
     
 }
 

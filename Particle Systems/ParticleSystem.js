@@ -13,7 +13,7 @@ function ParticleSystem(x, y){
 }
 
 
-ParticleSystem.prototype.run = function(){
+ParticleSystem.prototype.run = function(canvas){
 
     this.i++
 
@@ -31,14 +31,14 @@ ParticleSystem.prototype.run = function(){
 
     // console.log("AHHH")
     // console.log(this.particles)
-    this.update();
+    this.update(canvas);
 }
 
-ParticleSystem.prototype.update = function(){
+ParticleSystem.prototype.update = function(canvas){
     // particle.run();
 
     for(let i = 0; i < this.particles.length; i++){
-        this.particles[i].run(this.particles);
+        this.particles[i].run(this.particles, canvas);
     }
 
     // this.particles[0].run()
