@@ -9,6 +9,7 @@ let mover;
 let attract = true;
 let mousePos = { x: 0, y: 0 }
 let particleSystems = []
+let ship;
 
 
 window.addEventListener("click", onClick)
@@ -41,7 +42,8 @@ function click() {
 function init() {
     canvas = document.getElementById("cnv");
     context = canvas.getContext("2d");
-    ps = new ParticleSystem(100, 100);
+    // ps = new ParticleSystem(100, 100);
+    ship = new Ship()
     mover = new Mover();
     animate();      // kick off the animation
 }
@@ -58,11 +60,13 @@ function animate() {
 // move G the circle to a new location
 function runBubbles() {
 
-    for(let i = 0; i < particleSystems.length; i++){
-        particleSystems[i].run(canvas)
-    }
+    // for(let i = 0; i < particleSystems.length; i++){
+    //     particleSystems[i].run(canvas)
+    // }
 
     // mover.run()
+
+    ship.run()
     
 }
 
