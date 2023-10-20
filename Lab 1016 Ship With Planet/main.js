@@ -10,6 +10,7 @@ let attract = true;
 let mousePos = { x: 0, y: 0 }
 let particleSystems = []
 let ship;
+let planet;
 
 
 window.addEventListener("click", onClick)
@@ -45,13 +46,16 @@ function init() {
     // ps = new ParticleSystem(100, 100);
     ship = new Ship()
     mover = new Mover();
+    planet = new Planet()
     animate();      // kick off the animation
 }
 
 // every animation cycle
 function animate() {
     context.fillStyle = "rgba(0, 0 ,0, 0.1)"
-    context.fillRect(0, 0, canvas.width, canvas.height);
+    // context.fillRect(0, 0, canvas.width, canvas.height);
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
     runBubbles();   // run bubbles
     requestAnimationFrame(animate); // next cycle
 }
@@ -65,8 +69,9 @@ function runBubbles() {
     // }
 
     // mover.run()
-
+    planet.run()
     ship.run()
+    
     
 }
 

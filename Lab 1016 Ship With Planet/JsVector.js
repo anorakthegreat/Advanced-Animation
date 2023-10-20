@@ -8,7 +8,7 @@ function JSVector(x, y) {
 }
 
 // Set the magnitude of the vector,
-// retaining the angle (direction).
+// retaining the angle (direction).s
 JSVector.prototype.setMagnitude = function (mag) {
   let theta = this.getDirection();
   this.x = mag * Math.cos(theta);
@@ -91,14 +91,19 @@ JSVector.limitAngle = function (v1, v2, angleLimit) {
 }
 
 // Get the distance between this vector and another one
-JSVector.prototype.distance = function (v2) {
-  return Math.sqrt(Math.pow((this.x - v2.x), 2) + Math.pow((this.y * v2.y), 2));
+JSVector.prototype.distance = function(v2){
+  xVal = Math.pow(v2.x - this.x, 2)
+  yVal = Math.pow(v2.y - this.y, 2)
+
+  return Math.sqrt(xVal + yVal)
+ 
 }
 
+
 // Get square of the distance between this vector and another one
-JSVector.prototype.distanceSquared = function (v2) {
-  return Math.sqrt(this.distance);
-}
+// JSVector.prototype.distanceSquared = function (v2) {
+//   return Math.sqrt(this.distance);
+// }
 
 // Rotate this vector by some number of radians
 // using the rotation matrix |  cos   -sin  |
