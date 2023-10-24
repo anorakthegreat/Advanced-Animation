@@ -11,9 +11,9 @@ function Particle(loc, lifeSpan, diam){
     let colors = ["red", "orange", "yellow", "green"]
 
     this.w = Math.floor(Math.random() * (5 - 1) ) + 1; 
-    this.z = Math.floor(Math.random() * (3 - 1) ) + 1; 
+    this.z = Math.floor(Math.random() * (4 - 1) ) + 1; 
     // ctx = context
-
+    this.x = 0.00000000000000000000000000000000000000000000000000000000000000000000001
     console.log(this.w)
     
     
@@ -38,6 +38,8 @@ Particle.prototype.update = function(){
 
 
 Particle.prototype.render = function () {
+
+    this.x+= Math.PI/2
     // console.log("AHHH")
     let ctx = context;
     // ctx.strokeStyle = "rgba(0, 255, 0, 55)"
@@ -62,19 +64,56 @@ Particle.prototype.render = function () {
 
 
     ctx.beginPath();
-
+    // z = 2
     if(this.z == 1){
         ctx.arc(this.loc.x, this.loc.y, this.diam, Math.PI * 2, 0, false);
-    } else {
+        ctx.stroke();
+        ctx.fill()
+    } else if(this.z == 2){
+        ctx.save()
+
+        ctx.translate(this.loc.x, this.loc.y)
+        // ctx.rotate(this.loc.angleBetween(planet.loc) * 180 / Math.PI)
+
+        // ctx.rotate(Math.PI/2 + planet.loc.getDirection())
+        ctx.rotate(this.x/10)
+
+
+        // console.log(this.vel.angleBetween(planet.vel) * 180 / Math.PI)
+        ctx.beginPath()
+        ctx.moveTo(0, -6)
+        ctx.lineTo(-4, 4)
+        ctx.lineTo(0, 0)
+        ctx.lineTo(4, 4)
+        ctx.closePath()
+        ctx.stroke()
+        ctx.fill()
+
+        // ctx.rect(this.loc.x, this.loc.y, this.diam, Math.PI * 2, 0, false);
+
+
+        ctx.stroke();
+        ctx.fill() 
+
+        ctx.restore()
+    
+    
+    
+    }else{
         ctx.rect(this.loc.x, this.loc.y, this.diam, Math.PI * 2, 0, false);
+
+        ctx.stroke();
+        ctx.fill()
 
     }
 
-    // ctx.rect(this.loc.x, this.loc.y, this.diam, Math.PI * 2, 0, false);
+   
 
 
-    ctx.stroke();
-    ctx.fill() 
+     
+
+    
+    
 }
 
 Particle.prototype.isDead = function (arr) {
