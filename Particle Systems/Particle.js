@@ -67,8 +67,7 @@ Particle.prototype.render = function () {
     // z = 2
     if(this.z == 1){
         ctx.arc(this.loc.x, this.loc.y, this.diam, Math.PI * 2, 0, false);
-        ctx.stroke();
-        ctx.fill()
+       
     } else if(this.z == 2){
         ctx.save()
 
