@@ -14,6 +14,7 @@ function Mover(loc, vel, d, ctx1, ctx2, worldWidth, worldHeight) {
 
 //++++++++++++++++++++++++++++++++ mover methods
 Mover.prototype.run = function () {
+  // console.log("AHHH")
   this.update();
   this.checkEdges();
   this.render();
@@ -41,26 +42,43 @@ Mover.prototype.render = function () {
     
 
     //  render balls in world
-    let ctx1 = this.ctx1;
+  //   let ctx1 = this.ctx1;
    
-   //  render balls in mini map
-    let ctx2 = this.ctx2;
+  //  //  render balls in mini map
+  //   let ctx2 = this.ctx2;
 
-    ctx1.arc(this.loc.x, this.loc.y, this.diam, Math.PI * 2, 0, false);
-    ctx2.arc(this.loc.x, this.loc.y, this.diam, Math.PI * 2, 0, false);
+  //   ctx1.arc(this.loc.x, this.loc.y, this.diam, Math.PI * 2, 0, false);
+  //   ctx2.arc(this.loc.x, this.loc.y, this.diam, Math.PI * 2, 0, false);
 
-    let clr = "rgba(255, 100, 16, .83)"
-    ctx1.strokeStyle = clr;
-    ctx1.fillStyle = clr;
+  //   let clr = "rgba(255, 100, 16, .83)"
+  //   ctx1.strokeStyle = clr;
+  //   ctx1.fillStyle = clr;
 
-    ctx2.strokeStyle = clr;
-    ctx2.fillStyle = clr;
+  //   ctx2.strokeStyle = clr;
+  //   ctx2.fillStyle = clr;
 
-    ctx1.stroke();
-    ctx1.fill();
+  //   ctx1.stroke();
+  //   ctx1.fill();
 
-    ctx2.fill()
-    ctx2.stroke();
+  //   ctx2.fill()
+  //   ctx2.stroke();
+  
+
+    this.ctx1.beginPath();
+   this.ctx1.arc(this.loc.x, this.loc.y, this.diam, 0, Math.PI*2);
+   this.ctx1.closePath();
+   this.ctx1.strokeStyle = this.clr;
+   this.ctx1.fillStyle = this.clr;
+   this.ctx1.fill();
+   this.ctx1.stroke();
+
+   this.ctx2.beginPath();
+   this.ctx2.arc(this.loc.x, this.loc.y, this.diam, 0, Math.PI*2);
+   this.ctx2.closePath();
+   this.ctx1.strokeStyle = this.clr;
+   this.ctx2.fillStyle = this.clr;
+   this.ctx2.fill();
+   this.ctx2.stroke();
 
 
 
