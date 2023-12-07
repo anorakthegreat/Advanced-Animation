@@ -90,34 +90,34 @@ World.prototype.run = function () {
   
 
 
-  ctx.save();
+  ctxmain.save();
   mini.save();
-  ctx.translate(-this.cnvMainLoc.x, -this.cnvMainLoc.y);
+  ctxmain.translate(-this.cnvMainLoc.x, -this.cnvMainLoc.y);
   mini.translate(this.cnvMini.width/2, this.cnvMini.height/2);
 
   
-  ctx.beginPath(); //draws axis main
-  ctx.moveTo(this.dims.left, 0);
-  ctx.lineTo(this.dims.right, 0);
-  ctx.closePath();
-  ctx.lineWidth = 20;
-  ctx.stroke();
-  ctx.beginPath();
-  ctx.moveTo(0, this.dims.top);
-  ctx.lineTo(0, this.dims.bottom);
-  ctx.closePath();
-  ctx.lineWidth = 20;
-  ctx.stroke();
+  ctxmain.beginPath(); //draws axis main
+  ctxmain.moveTo(this.dims.left, 0);
+  ctxmain.lineTo(this.dims.right, 0);
+  ctxmain.closePath();
+  ctxmain.lineWidth = 20;
+  ctxmain.stroke();
+  ctxmain.beginPath();
+  ctxmain.moveTo(0, this.dims.top);
+  ctxmain.lineTo(0, this.dims.bottom);
+  ctxmain.closePath();
+  ctxmain.lineWidth = 20;
+  ctxmain.stroke();
 
 
-  ctx.beginPath(); //draws border main
-  ctx.moveTo(this.dims.left, this.dims.top);
-  ctx.lineTo(this.dims.left, this.dims.bottom);
-  ctx.lineTo(this.dims.right, this.dims.bottom);
-  ctx.lineTo(this.dims.right, this.dims.top);
-  ctx.closePath();
-  ctx.lineWidth = 20;
-  ctx.stroke();
+  ctxmain.beginPath(); //draws border main
+  ctxmain.moveTo(this.dims.left, this.dims.top);
+  ctxmain.lineTo(this.dims.left, this.dims.bottom);
+  ctxmain.lineTo(this.dims.right, this.dims.bottom);
+  ctxmain.lineTo(this.dims.right, this.dims.top);
+  ctxmain.closePath();
+  ctxmain.lineWidth = 20;
+  ctxmain.stroke();
 
   //  scale the world to fit into the miniCanvas
   mini.scale(this.scaleX, this.scaleY);
@@ -133,7 +133,7 @@ World.prototype.run = function () {
   // this.movers[0].run()
 
 
-  ctx.restore();
+  ctxmain.restore();
 
   mini.beginPath(); //draws axis mini
   mini.moveTo(this.dims.left, 0);

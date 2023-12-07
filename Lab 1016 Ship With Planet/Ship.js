@@ -121,9 +121,9 @@ Ship.prototype.render = function () {
     // ctx.stroke();
     // ctx.fill() 
 
-    let clr = "rgba(255, 100, 16, .83)"
-    ctx.strokeStyle = clr;
-    ctx.fillStyle = clr;
+        let clr = "rgba(255, 100, 16, .83)"
+        ctx.strokeStyle = clr;
+        ctx.fillStyle = clr;
 
     ctx.moveTo(0, 15)
     ctx.lineTo(-4, 20)
